@@ -1,0 +1,5 @@
+org/cameron/weather/Services/WeatherHttpRequest.class
+org/cameron/weather/Main.class
+org/cameron/weather/Services/WeatherService.class
+org/cameron/weather/DTO/WeatherDTO.class
+org/cameron/weather/Controllers/WeatherController.class

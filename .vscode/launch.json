@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Main<WeatherAPI>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.cameron.weather.Main",
+            "projectName": "WeatherAPI",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
