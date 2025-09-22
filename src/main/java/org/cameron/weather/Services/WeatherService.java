@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cameron.weather.DTO.WeatherDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,14 +16,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class WeatherService {
 
-    private final String BASEURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
-    private final String APIKEY = "YOUR_API_KEY";
-
+    private final String BASEURL;
+    private final String APIKEY;
     private final WeatherHttpRequest weatherHttpRequest;
     private final ObjectMapper mapper;
 
-    public WeatherService(WeatherHttpRequest weatherHttpRequest) {
+    public WeatherService(
+            WeatherHttpRequest weatherHttpRequest,
+            @Value("${weather.api.weatherBaseUrl}") String baseUrl,
+            @Value("${weather.api.weatherKey}") String apiKey) {
         this.weatherHttpRequest = weatherHttpRequest;
+        this.BASEURL = baseUrl;
+        this.APIKEY = apiKey;
         this.mapper = new ObjectMapper();
     }
 

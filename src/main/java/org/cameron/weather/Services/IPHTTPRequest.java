@@ -8,21 +8,21 @@ import java.net.http.HttpResponse;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WeatherHttpRequest {
-
+public class IPHTTPRequest {
+    
     private final HttpClient client;
 
-    public WeatherHttpRequest() {
+    public IPHTTPRequest() {
         this.client = HttpClient.newHttpClient();
     }
 
-    public String getWeatherByZipCode(String zipCode, String requestUrl) throws IOException, InterruptedException {
+    public void getIP(String requestUrl) throws IOException, InterruptedException {
         java.net.http.HttpRequest httpRequest = java.net.http.HttpRequest.newBuilder()
                 .uri(URI.create(requestUrl))
                 .GET()
                 .build();
 
         HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        return response.body();
+        System.out.println("IP Response: " + response.body());
     }
 }
