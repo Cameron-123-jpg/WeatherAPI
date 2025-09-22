@@ -21,6 +21,13 @@ public class WeatherController {
 
     @GetMapping("/zip")
     public List<WeatherDTO> getWeather(@RequestParam String zipCode) throws Exception {
-        return weatherService.getNextSixHours(zipCode);
+        return weatherService.getWeatherZipCode(zipCode);
     }
+
+    @GetMapping("/place")
+    public List<WeatherDTO> getPlace(@RequestParam String place) throws Exception {
+        return weatherService.getWeatherPlace(place);
+    }
+
+    
 }

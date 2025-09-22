@@ -17,5 +17,4 @@ public class WeatherDTO {
         this.feelsLike = feelsLike;
         this.conditions = conditions;
     }
-    
 }
