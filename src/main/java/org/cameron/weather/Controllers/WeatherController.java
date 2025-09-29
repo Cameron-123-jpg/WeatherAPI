@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.cameron.weather.Utility.LastRequestService;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -17,15 +18,18 @@ import jakarta.servlet.http.HttpServletRequest;
 public class WeatherController {
 
     private final WeatherService weatherService;
+    private final LastRequestService lastRequestService;
 
-    public WeatherController(WeatherService weatherService) {
+    public WeatherController(WeatherService weatherService, LastRequestService lastRequestService) {
         this.weatherService = weatherService;
+        this.lastRequestService = lastRequestService;
     }
 
     @GetMapping("/zip")
     public List<WeatherDTO> getWeather(@RequestParam String zipCode, HttpServletRequest request) throws Exception {
         String ipAddress = request.getRemoteAddr();
         System.out.println("LOG: Request from IP " + ipAddress + " for zip code: " + zipCode);
+        lastRequestService.saveRequest(zipCode);
         return weatherService.getWeatherZipCode(zipCode);
     }
 
@@ -33,6 +37,7 @@ public class WeatherController {
     public List<WeatherDTO> getPlace(@RequestParam String place, HttpServletRequest request) throws Exception {
         String ipAddress = request.getRemoteAddr();
         System.out.println("LOG: Request from IP " + ipAddress + " for location: " + place);
+        lastRequestService.saveRequest(place);
         return weatherService.getWeatherPlace(place);
     }
 }

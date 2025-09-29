@@ -1,4 +1,4 @@
-package org.cameron.weather.Services;
+package org.cameron.weather.Utility;
 
 import java.io.IOException;
 import java.net.URI;

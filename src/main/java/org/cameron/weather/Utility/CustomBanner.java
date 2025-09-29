@@ -17,14 +17,13 @@ public class CustomBanner implements Banner {
     public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-        out.println(BLUE + "=================================================================" + RESET);
+        out.println(BLUE + "=================================================" + RESET);
         out.println(GREEN +
-                "  __        __   _                            \n" +
                 "  \\ \\      / /__| | ___ ___  _ __ ___   ___   \n" +
                 "   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\  \n" +
                 "    \\ V  V /  __/ | (_| (_) | | | | | |  __/  \n" +
                 "     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___|  " + RESET);
-        out.println(BLUE + "=================================================================" + RESET);
+        out.println(BLUE + "=================================================" + RESET);
 
         out.println(GREEN + "         WEATHER API  -  System Running" + RESET);
     }
