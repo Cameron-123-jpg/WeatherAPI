@@ -11,19 +11,22 @@ Requirements
 ⸻
 
 Setup
-	1.	Clone the repository
-	
-**git clone https://github.com/Cameron-123-jpg/WeatherAPI.git
-cd project-folder**
-	2.	Create a local Spring profile
-**Inside src/main/resources, create a file named application-local.yml**
-	3.	Add your API credentials
-**Paste the following into application-local.yml:**
 
-'''weather:
+	1.	Clone the repository
+
+git clone https://github.com/Cameron-123-jpg/WeatherAPI.git
+cd project-folder**
+
+	2.	Create a local Spring profile
+Inside src/main/resources, create a file named application-local.yml
+
+	3.	Add your API credentials
+Paste the following into application-local.yml:
+
+weather:
   api:
     weatherKey: YOUR_API_KEY
-    weatherBaseUrl: YOUR_BASE_URL'''
+    weatherBaseUrl: YOUR_BASE_URL
 
 You can get your API key and base URL from Visual Crossing Weather API.
 
@@ -42,7 +45,7 @@ As an API
 
 As a Console App
 	•	Enter requests directly in the terminal in the format: <place>,<hours>
-	•	Example: Carlock,6
+	•	Example: Chicago, 6
 	•	If hours are omitted, the default is 6.
 
 ⸻
