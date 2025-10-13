@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.cameron.weather.DTO.WeatherDTO;
 import org.cameron.weather.Utility.WeatherHttpRequest;
+import org.cameron.weather.Utility.LastRequestUtility;
+import org.cameron.weather.Utility.SaveRequestUtility;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,18 +23,33 @@ public class WeatherService {
     private final String APIKEY;
     private final WeatherHttpRequest weatherHttpRequest;
     private final ObjectMapper mapper;
+    private final LastRequestUtility lastRequestService;
+    private final SaveRequestUtility saveRequestUtility;
 
     public WeatherService(
             WeatherHttpRequest weatherHttpRequest,
             @Value("${weather.api.weatherBaseUrl}") String baseUrl,
-            @Value("${weather.api.weatherKey}") String apiKey) {
+            @Value("${weather.api.weatherKey}") String apiKey,
+            LastRequestUtility lastRequestService,
+            SaveRequestUtility saveRequestUtility) {
         this.weatherHttpRequest = weatherHttpRequest;
         this.BASEURL = baseUrl;
         this.APIKEY = apiKey;
         this.mapper = new ObjectMapper();
+        this.lastRequestService = lastRequestService;
+        this.saveRequestUtility = saveRequestUtility;
     }
 
     public List<WeatherDTO> getWeatherZipCode(String zipCode) throws IOException, InterruptedException {
+        return getWeatherZipCode(zipCode, 6, true);
+    }
+
+    public List<WeatherDTO> getWeatherZipCode(String zipCode, int hoursRequested, boolean saveRequest) throws IOException, InterruptedException {
+        if (saveRequest) {
+            lastRequestService.saveRequest(zipCode);
+            saveRequestUtility.saveRequest(zipCode);
+        }
+
         String requestUrl = BASEURL + zipCode + "?key=" + APIKEY;
         String response = weatherHttpRequest.getWeatherByZipCode(zipCode, requestUrl);
 
@@ -43,7 +60,7 @@ public class WeatherService {
         int currentHour = LocalDateTime.now(ZoneId.of(timeZone)).getHour();
 
         List<WeatherDTO> result = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < hoursRequested; i++) {
             int index = (currentHour + i) % hours.size();
             JsonNode hour = hours.get(index);
 
@@ -58,6 +75,19 @@ public class WeatherService {
     }
 
     public List<WeatherDTO> getWeatherPlace(String place) throws IOException, InterruptedException {
+        return getWeatherPlace(place, 6, true);
+    }
+
+    public List<WeatherDTO> getWeatherPlace(String place, int hoursRequested) throws IOException, InterruptedException {
+        return getWeatherPlace(place, hoursRequested, true);
+    }
+
+    public List<WeatherDTO> getWeatherPlace(String place, int hoursRequested, boolean saveRequest) throws IOException, InterruptedException {
+        if (saveRequest) {
+            lastRequestService.saveRequest(place);
+            saveRequestUtility.saveRequest(place);
+        }
+
         String requestUrl = BASEURL + place + "?key=" + APIKEY;
         String response = weatherHttpRequest.getWeatherByZipCode(place, requestUrl);
 
@@ -68,7 +98,7 @@ public class WeatherService {
         int currentHour = LocalDateTime.now(ZoneId.of(timeZone)).getHour();
 
         List<WeatherDTO> result = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < hoursRequested; i++) {
             int index = (currentHour + i) % hours.size();
             JsonNode hour = hours.get(index);
 

@@ -4,4 +4,5 @@
 /Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Controllers/WeatherController.java
 /Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Utility/WeatherHttpRequest.java
 /Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Utility/CustomBanner.java
-/Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Utility/LastRequestService.java
+/Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Utility/SaveRequestUtility.java
+/Users/camerondickhut/Java/WeatherAPI/src/main/java/org/cameron/weather/Utility/LastRequestUtility.java

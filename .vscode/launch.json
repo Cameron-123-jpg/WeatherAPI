@@ -9,6 +9,16 @@
             "projectName": "WeatherAPI",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Main<WeatherApiApplication>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.cameron.weather.Main",
+            "projectName": "WeatherApiApplication",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

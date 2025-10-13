@@ -17,4 +17,12 @@ public class WeatherDTO {
         this.feelsLike = feelsLike;
         this.conditions = conditions;
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "%s: %.1f°F (feels like %.1f°F), %s",
+            time, temperature, feelsLike, conditions
+        );
+    }
 }
