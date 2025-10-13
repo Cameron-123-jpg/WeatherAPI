@@ -1,3 +1,4 @@
+Please Read This in Code Form
 Weather API - Java Spring Boot
 
 A fun, beginner-friendly Java API that fetches weather data and caches requests locally. Built with Java 25 and Maven.
