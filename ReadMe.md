@@ -11,6 +11,7 @@ Requirements
 ⸻
 
 Setup
+
 	1.	Clone the repository
 
 git clone <your-repo-url>
@@ -18,6 +19,7 @@ cd <project-folder>
 
 	2.	Create a local Spring profile
 Inside src/main/resources, create a file named application-local.yml
+
 	3.	Add your API credentials
 Paste the following into application-local.yml:
 
@@ -29,7 +31,6 @@ weather:
 You can get your API key and base URL from Visual Crossing Weather API.
 
 	4.	Run the project
-
 mvn spring-boot:run -Dspring-boot.run.profiles=local
 
 
