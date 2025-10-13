@@ -11,22 +11,19 @@ Requirements
 ⸻
 
 Setup
-
 	1.	Clone the repository
-
-git clone <your-repo-url>
-cd <project-folder>
-
+	
+**git clone https://github.com/Cameron-123-jpg/WeatherAPI.git
+cd project-folder**
 	2.	Create a local Spring profile
-Inside src/main/resources, create a file named application-local.yml
-
+**Inside src/main/resources, create a file named application-local.yml**
 	3.	Add your API credentials
-Paste the following into application-local.yml:
+**Paste the following into application-local.yml:**
 
-weather:
+'''weather:
   api:
     weatherKey: YOUR_API_KEY
-    weatherBaseUrl: YOUR_BASE_URL
+    weatherBaseUrl: YOUR_BASE_URL'''
 
 You can get your API key and base URL from Visual Crossing Weather API.
 
